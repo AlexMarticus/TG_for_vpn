@@ -21,7 +21,7 @@ async def install_guide_menu(callback: CallbackQuery):
              f"rprx-vision&encryption=none#VLESS%20direct%20TLS%20{name}")
     link2 = (f"vless://{user.client_id}@seerb.freemyip.com:443?security=tls&fp=chrome&type=ws&path="
              f"/myverysecretpath&encryption=none#VLESS%20direct%20WEBS%20{name}")
-    text = f"Необходимые вам ссылки:\n{'-'*10}\n`{link1}`\n{'-'*10}\n`{link2}`\n{'-'*10}\nВыберите устройство:"
+    text = f"Необходимые вам ссылки:\n{'-'*10}\n<pre>{link1}</pre>\n{'-'*10}\n<pre>{link2}</pre>\n{'-'*10}\nВыберите устройство:"
     await callback.message.edit_text(text, reply_markup=install_ikb, parse_mode="MARKDOWN")
 
 

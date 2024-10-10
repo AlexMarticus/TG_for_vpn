@@ -17,13 +17,13 @@ async def get_ref_code(callback: CallbackQuery):
         await callback.answer('ПОСЛЕ КАЖДОГО ПРИГЛАШЕНИЯ КОД МЕНЯЕТСЯ')
         user = await rq.info_user(tg_id=callback.from_user.id)
         ref = await rq.get_free_ref(user.id)
-        text = f"@{BOT_USERNAME}\nРеферальный код: `{ref}`"
+        text = f"@{BOT_USERNAME}\nРеферальный код: <pre>{ref}</pre>"
         markup = InlineKeyboardMarkup(inline_keyboard=[
             [
                 InlineKeyboardButton(text="В главное меню", callback_data="to_main"),
             ],
         ])
-        await callback.message.edit_text(text=text, reply_markup=markup, parse_mode="MARKDOWN")
+        await callback.message.edit_text(text=text, reply_markup=markup, parse_mode="HTML")
     else:
         await callback.answer('Простите ;(')
         await callback.message.edit_text(text='Вас лишили привилегий ;(', reply_markup=start_menu_ikb)
