@@ -3,7 +3,7 @@ import logging
 from datetime import timedelta, datetime
 
 from aiogram import Bot, Dispatcher
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
@@ -35,7 +35,7 @@ async def send_monthly_message():
             if user.date_next_pay >= datetime.now() + timedelta(days=3):
                 await ban_unban(user_id=user.id, is_ban=True)
     # и отправка бд мне в тг для архивации
-    await bot.send_document(chat_id=ADMINS[0], document=DB_NAME)
+    await bot.send_document(chat_id=ADMINS[0], document=FSInputFile(path=DB_NAME))
 
 
 def setup_scheduler():
