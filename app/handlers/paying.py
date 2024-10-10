@@ -18,6 +18,7 @@ async def pay_menu(callback: CallbackQuery):
     ])
     if user.date_next_pay is None:
         await rq.refresh_date_next_pay(user_id=user.id)
+        user = await rq.info_user(tg_id=callback.from_user.id)
     if user.is_without_payment:
         await callback.message.edit_text('Для вас ВПН бесплатный', reply_markup=keyboard)
     else:
