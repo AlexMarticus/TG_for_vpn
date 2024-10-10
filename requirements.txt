@@ -1,0 +1,5 @@
+aiogram
+environs
+aiosqlite
+sqlalchemy
+apscheduler
